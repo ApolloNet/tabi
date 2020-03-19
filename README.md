@@ -1,4 +1,9 @@
-# tabi
+# 旅 Tabi
+
+## Run
+
+- `docker build -t tabi .`
+- `docker run -it -p 8080:80 --rm --name tabi tabi`
 
 ## Project setup
 ```
