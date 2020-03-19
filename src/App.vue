@@ -1,28 +1,47 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <header class="header-main">
+      <div class="wrapper">
+        <div class="branding">
+          <h1 class="branding-title">旅 Tabi</h1>
+          <p class="branding-slogan">Inspiration for your trips</p>
+        </div>
+        <Search @search-for="searchObject = $event" :country="country" :city="city"/>
+      </div>
+    </header>
+    <main class="content-main">
+      <div class="wrapper">
+        <Results :country="country" :city="city"/>
+      </div>
+    </main>
+    <Footer @search-for="searchObject = $event"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Footer from '@/components/Footer.vue'
+import Results from '@/components/Results.vue'
+import Search from '@/components/Search.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Footer,
+    Results,
+    Search
+  },
+  data: function () {
+    return {
+      searchObject: ''
+    }
+  },
+  computed: {
+    country: function () {
+      return this.searchObject.country
+    },
+    city: function () {
+      return this.searchObject.city
+    },
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
