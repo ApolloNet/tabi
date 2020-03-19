@@ -2,7 +2,6 @@
   <footer class="footer-main">
     <div class="wrapper">
       <h2>Inspiration</h2>
-      <p v-if="$apollo.loading">Loading...</p>
       <p>
         <span v-for="country in countries" :key="country.id" class="footer-link">
           <a
