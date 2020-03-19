@@ -54,6 +54,7 @@ Have a look at the README for the commands to execute.
 ## Next steps
 
 - Unit tests (one day, i will master the TDD and implement tests first...)
+- CI with Travis & Github
 - Create a detailed view a city, with a Leaflet map
 - API key for the Everbase API must be set thru Docker (+ remove .env file)
 - Improve front end quality: tests with Webhint & Lighthouse
