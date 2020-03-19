@@ -6,6 +6,7 @@
 
 - `docker build -t tabi .`
 - `docker run -it -p 8080:80 --rm --name tabi tabi`
+- Access the app on [http://localhost:8080](http://localhost:8080)
 
 ## Project setup
 
