@@ -21,8 +21,9 @@
               <li>{{currency.name}} {{currency.unitSymbols}}</li>
             </ul>
           </li>
-          <li><a :href="`https://www.openstreetmap.org/#map=10/${city.location.lat}/${city.location.long}`" target="_blank">Map</a></li>
         </ul>
+        <p><button @click="showMap(city)">Show map</button></p>
+        <CityMap v-if="mapId === city.id" :lat="lat" :long="long"/>
       </article>
     </div>
   </div>
@@ -30,9 +31,13 @@
 
 <script>
 import gql from 'graphql-tag'
+import CityMap from '@/components/CityMap.vue'
 
 export default {
   name: 'Results',
+  components: {
+    CityMap
+  },
   props: {
     city: {
       type: String,
@@ -41,7 +46,14 @@ export default {
     country: {
       type: String,
       default: ''
-    },
+    }
+  },
+  data() {
+    return {
+      mapId: null,
+      lat: '',
+      long: ''
+    }
   },
   computed: {
     cityName: function () {
@@ -63,8 +75,13 @@ export default {
   },
   methods: {
     capitalize: function (string) {
-      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
     },
+    showMap: function (city) {
+      this.mapId = city.id
+      this.lat = city.location.lat
+      this.long = city.location.long
+    }
   },
   apollo: {
     cities: {

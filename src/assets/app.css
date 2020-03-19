@@ -1,5 +1,5 @@
 * {
-  border-box: box-sizing;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -18,6 +18,7 @@ ul {
 
 .wrapper {
   width: 960px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -49,7 +50,7 @@ ul {
 }
 
 .form-item {
-  margin: 0 1rem;
+  margin: 0 1rem 0.5rem 1rem;
 }
 
 .form-label {
