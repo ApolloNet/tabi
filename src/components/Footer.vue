@@ -24,7 +24,6 @@ export default {
   name: 'Footer',
   data () {
     return {
-      continents: null,
       countries: null
     }
   },
