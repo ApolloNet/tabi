@@ -37,6 +37,7 @@ I initiated the project with the following packages:
 - ESlint
 - Jest
 - Vue Apollo
+- Vue Leaflet
 
 ## Dev
 
@@ -44,6 +45,7 @@ I initiated the project with the following packages:
 - Results: a query with variables and some bindings (I've got stuck with graphQL variables and Vue Apollo but it's not that hard afterwards)
 - Search: bindings and event emitter
 - Style: homebrew quick and dirty responsive CSS
+- CityMap: a component including a Leaflet map and a marker centered on the location of the city
 
 ## Docker
 
@@ -53,8 +55,9 @@ Have a look at the README for the commands to execute.
 
 ## Next steps
 
-- Unit tests (one day, i will master the TDD and implement tests first...)
+- npm audit fix
+- Better steps : mock graphQL API, events, etc..
 - CI with Travis & Github
-- Create a detailed view a city, with a Leaflet map
+- Pagination
 - API key for the Everbase API must be set thru Docker (+ remove .env file)
 - Improve front end quality: tests with Webhint & Lighthouse

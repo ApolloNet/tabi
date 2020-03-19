@@ -3,6 +3,7 @@ import App from './App.vue'
 import { createProvider } from './vue-apollo'
 
 import '@/assets/app.css'
+import 'leaflet/dist/leaflet.css'
 
 Vue.config.productionTip = false
 
