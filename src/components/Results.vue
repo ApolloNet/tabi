@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div v-if="cities">
     <h2>Results</h2>
     <p v-if="$apollo.loading">Loading...</p>
-    <p v-if="!cities">No results</p>
     <div v-for="city in cities" :key="city.id">
       <article class="result">
         <h3 class="result-title">{{city.name}}</h3>
@@ -63,6 +62,9 @@ export default {
       return this.capitalize(this.country)
     },
     where: function () {
+      if (this.city === '' && this.country === '') {
+        return
+      }
       const where = {}
       if (this.cityName !== '') {
         where.name = {eq: this.cityName}
@@ -118,8 +120,7 @@ export default {
           where: this.where,
           limit: 20
         }
-      },
-      pollInterval: 10000
+      }
     }
   }
 }
