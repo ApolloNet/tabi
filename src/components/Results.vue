@@ -21,7 +21,11 @@
             </ul>
           </li>
         </ul>
-        <p><button @click="showMap(city)">Show map</button></p>
+        <p>
+          <button @click="showMap(city)" class="result-map-button">
+            Show map
+          </button>
+        </p>
         <CityMap v-if="mapId === city.id" :lat="lat" :long="long"/>
       </article>
     </div>
