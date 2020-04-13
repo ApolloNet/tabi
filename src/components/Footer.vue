@@ -3,12 +3,16 @@
     <div class="wrapper">
       <h2>Inspiration</h2>
       <p>
-        <span v-for="country in countries" :key="country.id" class="footer-link">
+        <span
+          v-for="country in countries"
+          :key="country.id"
+          class="footer-link"
+        >
           <a
             :href="country.id"
-            @click.stop.prevent="searchFor({country: country.name, city: ''})"
+            @click.stop.prevent="searchFor({ country: country.name, city: '' })"
           >
-            {{country.name}}
+            {{ country.name }}
           </a>
         </span>
       </p>
@@ -21,25 +25,27 @@ import gql from 'graphql-tag'
 
 export default {
   name: 'Footer',
-  data () {
+  data() {
     return {
-      countries: null
+      countries: null,
     }
   },
   methods: {
-    searchFor (searchObject) {
+    searchFor(searchObject) {
       this.$emit('search-for', searchObject)
-    }
+    },
   },
   apollo: {
     countries: {
-      query: gql`query {
-        countries {
-          id
-          name
+      query: gql`
+        query {
+          countries {
+            id
+            name
+          }
         }
-      }`
-    }
-  }
+      `,
+    },
+  },
 }
 </script>

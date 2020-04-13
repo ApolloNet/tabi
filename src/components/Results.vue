@@ -4,20 +4,28 @@
     <p v-if="$apollo.loading">Loading...</p>
     <div v-for="city in cities" :key="city.id">
       <article class="result">
-        <h3 class="result-title">{{city.name}}</h3>
-        <p>{{city.country.name}}, {{city.continent.name}}</p>
+        <h3 class="result-title">{{ city.name }}</h3>
+        <p>{{ city.country.name }}, {{ city.continent.name }}</p>
         <ul class="result-list">
-          <li>Population: {{city.population}}</li>
+          <li>Population: {{ city.population }}</li>
           <li>
             Languages:
-            <ul v-for="language in city.country.languages" :key="language.id" class="result-sublist">
-              <li>{{language.name}}</li>
+            <ul
+              v-for="language in city.country.languages"
+              :key="language.id"
+              class="result-sublist"
+            >
+              <li>{{ language.name }}</li>
             </ul>
           </li>
           <li>
             Currencies:
-            <ul v-for="currency in city.country.currencies" :key="currency.id" class="result-sublist">
-              <li>{{currency.name}} {{currency.unitSymbols}}</li>
+            <ul
+              v-for="currency in city.country.currencies"
+              :key="currency.id"
+              class="result-sublist"
+            >
+              <li>{{ currency.name }} {{ currency.unitSymbols }}</li>
             </ul>
           </li>
         </ul>
@@ -26,7 +34,7 @@
             Show map
           </button>
         </p>
-        <CityMap v-if="mapId === city.id" :lat="lat" :long="long"/>
+        <CityMap v-if="mapId === city.id" :lat="lat" :long="long" />
       </article>
     </div>
   </div>
@@ -39,23 +47,23 @@ import CityMap from '@/components/CityMap.vue'
 export default {
   name: 'Results',
   components: {
-    CityMap
+    CityMap,
   },
   props: {
     city: {
       type: String,
-      default: ''
+      default: '',
     },
     country: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
       mapId: null,
       lat: '',
-      long: ''
+      long: '',
     }
   },
   computed: {
@@ -71,13 +79,13 @@ export default {
       }
       const where = {}
       if (this.cityName !== '') {
-        where.name = {eq: this.cityName}
+        where.name = { eq: this.cityName }
       }
       if (this.countryName !== '') {
-        where.countryName = {eq: this.countryName}
+        where.countryName = { eq: this.countryName }
       }
       return where
-    }
+    },
   },
   methods: {
     capitalize: function (string) {
@@ -87,45 +95,47 @@ export default {
       this.mapId = city.id
       this.lat = city.location.lat
       this.long = city.location.long
-    }
+    },
   },
   apollo: {
     cities: {
-      query: gql`query Cities($where: WhereString!, $limit: Int!) {
-        cities(where: $where, limit: $limit) {
-          id
-          name
-          population
-          country{
+      query: gql`
+        query Cities($where: WhereString!, $limit: Int!) {
+          cities(where: $where, limit: $limit) {
             id
             name
-            languages{
+            population
+            country {
+              id
+              name
+              languages {
+                id
+                name
+              }
+              currencies {
+                id
+                name
+                unitSymbols
+              }
+            }
+            continent {
               id
               name
             }
-            currencies{
-              id
-              name
-              unitSymbols
+            location {
+              lat
+              long
             }
-          }
-          continent{
-            id
-            name
-          }
-          location{
-            lat
-            long
           }
         }
-      }`,
-      variables () {
+      `,
+      variables() {
         return {
           where: this.where,
-          limit: 20
+          limit: 20,
         }
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>

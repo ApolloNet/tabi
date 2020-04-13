@@ -1,18 +1,8 @@
 <template>
   <div>
-    <LMap
-      :zoom="zoom"
-      :center="center"
-      style="height: 400px"
-    >
-      <LTileLayer
-        :url="url"
-        :attribution="attribution"
-      />
-      <LMarker
-        :lat-lng="center"
-        :icon="icon"
-      />
+    <LMap :zoom="zoom" :center="center" style="height: 400px;">
+      <LTileLayer :url="url" :attribution="attribution" />
+      <LMarker :lat-lng="center" :icon="icon" />
     </LMap>
   </div>
 </template>
@@ -26,39 +16,40 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
   },
   props: {
     zoom: {
       type: Number,
-      default: 4
+      default: 4,
     },
     lat: {
       type: Number,
-      required: true
+      required: true,
     },
     long: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution:
+        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       icon: L.icon({
         iconUrl: require('@/assets/images/marker-icon.png'),
         iconRetinaUrl: require('@/assets/images/marker-icon-2x.png'),
         shadowUrl: require('@/assets/images/marker-shadow.png'),
         iconSize: [25, 41],
-        iconAnchor: [25, 41]
-      })
+        iconAnchor: [25, 41],
+      }),
     }
   },
   computed: {
     center: function () {
       return L.latLng(this.lat, this.long)
-    }
-  }
+    },
+  },
 }
 </script>
