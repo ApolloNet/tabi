@@ -6,15 +6,19 @@
           <h1 class="branding-title">旅 Tabi</h1>
           <p class="branding-slogan">Inspiration for your trips</p>
         </div>
-        <Search @search-for="searchObject = $event" :country="country" :city="city"/>
+        <Search
+          @search-for="searchObject = $event"
+          :country="country"
+          :city="city"
+        />
       </div>
     </header>
     <main class="content-main">
       <div class="wrapper">
-        <Results :country="country" :city="city"/>
+        <Results :country="country" :city="city" />
       </div>
     </main>
-    <Footer @search-for="searchObject = $event"/>
+    <Footer @search-for="searchObject = $event" />
   </div>
 </template>
 
@@ -28,11 +32,11 @@ export default {
   components: {
     Footer,
     Results,
-    Search
+    Search,
   },
   data: function () {
     return {
-      searchObject: ''
+      searchObject: '',
     }
   },
   computed: {
@@ -42,6 +46,6 @@ export default {
     city: function () {
       return this.searchObject.city
     },
-  }
+  },
 }
 </script>

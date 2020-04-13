@@ -4,8 +4,7 @@ import Footer from '@/components/Footer.vue'
 import Search from '@/components/Search.vue'
 
 describe('App.vue', () => {
-
-  const expectedSearchObject = {country: 'France', city: 'Paris'}
+  const expectedSearchObject = { country: 'France', city: 'Paris' }
   const wrapper = shallowMount(App)
 
   it('is a Vue instance', () => {

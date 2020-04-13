@@ -6,12 +6,12 @@ describe('Footer.vue', () => {
   const wrapper = shallowMount(Footer)
   wrapper.setData({
     countries: {
-      papua: {id: 1, name: "papua"},
-      kenya: {id: 2, name: "kenya"}
-    }
+      papua: { id: 1, name: 'papua' },
+      kenya: { id: 2, name: 'kenya' },
+    },
   })
   wrapper.setMethods({
-    searchFor: searchFor
+    searchFor: searchFor,
   })
 
   it('is a Vue instance', () => {
